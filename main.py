@@ -2,18 +2,24 @@ import pygame
 
 
 pygame.display.init()
-mapImg = pygame.image.load("images/self-portrait-without-beard.bmp")
-mapImg = mapImg.convert(32) # converts the pixel depth to 32 to support surfarray.pixels2d
+startImg = pygame.image.load("images/self-portrait-without-beard.bmp")
+startImg = startImg.convert(32) # converts the pixel depth to 32 to support surfarray.pixels2d
 
-pixels_array = pygame.surfarray.pixels2d(mapImg)
+targetImg = pygame.image.load("images/spring-summer-van-gogh-museum.bmp")
+targetImg = targetImg.convert(32)
 
-print(pixels_array[0])
+start_pixels_array = pygame.surfarray.pixels2d(startImg)
+target_pixels_array = pygame.surfarray.pixels2d(targetImg)
+
+print(len(start_pixels_array[0]))
 
 
-del pixels_array #unlock mapImg
-window = pygame.display.set_mode(mapImg.get_size())
+del start_pixels_array #unlock the surface
+
+
+window = pygame.display.set_mode(startImg.get_size())
 while True:
-    window.blit(mapImg, (0,0)) 
+    window.blit(startImg, (0,0)) 
     pygame.display.update()
 
     for evt in pygame.event.get():
